@@ -5,9 +5,16 @@ from email.utils import parsedate_to_datetime
 
 # List of RSS feeds to monitor
 rss_feeds = [
-    {"name": "Unchosen Champion", 
-     "url": "https://www.royalroad.com/fiction/syndication/62573"},
+    {
+        "name": "Unchosen Champion",
+        "url": "https://www.royalroad.com/fiction/syndication/62573",
+    },
+    {
+        "name": "Super Supportive",
+        "url": "https://www.royalroad.com/fiction/syndication/63759",
+    },
 ]
+
 
 # Function to get the formatted time difference
 def format_time_difference(time_difference):
@@ -30,6 +37,7 @@ def format_time_difference(time_difference):
         days = total_seconds // 86400
         return f"{int(days)} days ago"
 
+
 # Check each feed
 for feed in rss_feeds:
     # Fetch the RSS feed using requests
@@ -46,7 +54,9 @@ for feed in rss_feeds:
         if published_str:
             try:
                 # Parse the published time and convert to UTC
-                published_time = parsedate_to_datetime(published_str).astimezone(timezone.utc)
+                published_time = parsedate_to_datetime(published_str).astimezone(
+                    timezone.utc
+                )
                 time_difference = datetime.now(timezone.utc) - published_time
 
                 # Get formatted time difference
@@ -59,11 +69,13 @@ for feed in rss_feeds:
                     print(f"message: {message}")
                     requests.post(
                         "https://ntfy.sh/novelnotification",
-                        data=message.encode("utf-8")
+                        data=message.encode("utf-8"),
                     )
                     print(f"Notification sent: {message}")
                 else:
-                    print(f"No new entries in {feed['name']} within the last 20 minutes. Last entry was {formatted_time}.")
+                    print(
+                        f"No new entries in {feed['name']} within the last 20 minutes. Last entry was {formatted_time}."
+                    )
             except Exception as e:
                 print(f"Error parsing published time for {feed['name']}: {e}")
         else:
