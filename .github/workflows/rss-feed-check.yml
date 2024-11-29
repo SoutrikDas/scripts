@@ -2,7 +2,7 @@ name: RSS Feed Notification Checker
 
 on:
   schedule:
-    - cron: "*/5 * * * *" # This will run the workflow every 5 minutes
+    - cron: "*/1 * * * *" # This will run the workflow every 1 minute
   workflow_dispatch: # This allows manual triggering of the workflow if needed
 
 jobs:
