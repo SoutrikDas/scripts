@@ -10,14 +10,12 @@ rss_feeds = [
 ]
 
 # Function to get the formatted time difference
-
-
 def format_time_difference(time_difference):
     # Convert time difference to seconds
     total_seconds = time_difference.total_seconds()
 
     if total_seconds < 60:
-        # If less than a minute, display minutes
+        # If less than a minute, display seconds
         return f"{int(total_seconds)} seconds ago"
     elif total_seconds < 3600:
         # If less than an hour, display minutes
@@ -28,10 +26,9 @@ def format_time_difference(time_difference):
         hours = total_seconds // 3600
         return f"{int(hours)} hours ago"
     else:
-        # If more than two day, display days
+        # If more than two days, display days
         days = total_seconds // 86400
         return f"{int(days)} days ago"
-
 
 # Check each feed
 for feed in rss_feeds:
@@ -67,12 +64,10 @@ for feed in rss_feeds:
                     )
                     print(f"Notification sent: {message}")
                 else:
-                    print(f"No new entries in {
-                          feed['name']} within the last 5 minutes. Last entry was {formatted_time}.")
+                    print(f"No new entries in {feed['name']} within the last 5 minutes. Last entry was {formatted_time}.")
             except Exception as e:
                 print(f"Error parsing published time for {feed['name']}: {e}")
         else:
-            print(f"No published date found in the latest entry for {
-                  feed['name']}.")
+            print(f"No published date found in the latest entry for {feed['name']}.")
     else:
         print(f"No entries found in {feed['name']}.")
