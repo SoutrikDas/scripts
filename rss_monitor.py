@@ -13,6 +13,10 @@ rss_feeds = [
         "name": "Super Supportive",
         "url": "https://www.royalroad.com/fiction/syndication/63759",
     },
+    {
+        "name": "Zenith of Sorcery",
+        "url": "https://www.royalroad.com/fiction/syndication/71045",
+    },
 ]
 
 
